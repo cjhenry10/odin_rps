@@ -5,74 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="script.js" async></script>
 </head>
 <body>
-    <script>
-        // array of strings for options and variable to store the last winner in 5 round game
-        let options = ["rock", "paper", "scissors"];
-        let lastWinner = "";
-
-        // generate random number 0 - x
-        function randInt(x) {
-            return Math.floor(Math.random() * x);
-        }
-
-        // has computer randomly select from options array
-        function computerPlay() {
-            return options[randInt(3)];
-        }
-        
-        // checks who won based on rock paper scissors rules
-        function play(playerSelection, computerSelection) {
-            switch (true) {
-                case (playerSelection === computerSelection):
-                    return "Tied";
-                    break;
-                case (((playerSelection === "rock") && (computerSelection === "scissors")) || ((playerSelection === "paper") && (computerSelection === "rock")) || ((playerSelection === "scissors") && (computerSelection === "paper"))):
-                    lastWinner = "player";
-                    return `You won that round. ${playerSelection} beats ${computerSelection}!`;
-                    break;
-                default:
-                    lastWinner = "computer";
-                    return `You lost that round. ${computerSelection} beats ${playerSelection}!`;
-            }
-        }
-
-        // plays the game 5 times and tracks the score, displaying the winner of each round and the 5 round contest on the console
-        function game() {
-            let playerScore = 0;
-            let computerScore = 0;
-
-            // 5 round game
-            for (let i = 0; i < 5; i++) {
-                // pop up to get player choice
-                let playerChoice = prompt("Choose 'rock', 'paper', or 'scissors'.");
-                let computerChoice = computerPlay();
-                let result = play(playerChoice, computerChoice);
-                console.log(result);
-                // updates the score
-                if (lastWinner === "player") {
-                    playerScore ++;
-                }
-                if (lastWinner === "computer") {
-                    computerScore++;
-                }
-                // reset lastWinner to use for next round
-                lastWinner = "";
-            }
-
-            // display message based on the result of the game
-            if (playerScore > computerScore) {
-                console.log(`You won! ${playerScore} to ${computerScore}.`);
-            }
-            else if (playerScore < computerScore) {
-                console.log(`You lost. ${computerScore} to ${playerScore}.`);
-            }
-            else {
-                console.log("You tied after 5 rounds.");
-            }
-        }
-        game();
-    </script>
+    <h1>Rock Paper Scissors</h1>
+    <div id="game">
+        <div id="score">
+            <span> -- Player Score: <span id="player-score">0</span> --</span>
+            <span>-- Computer Score: <span id="computer-score">0</span> -- </span>
+        </div>
+    </div>
 </body>
 </html>
